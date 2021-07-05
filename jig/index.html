@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>為替レート</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+<body>
+    <header>
+        <h1>為替レート</h1>
+    </header>
+    <div class="container">
+        <select class="form-control" id="exgin">
+            <option value="null">選んでください</option>
+            <option value="USD">アメリカ合衆国ドル</option>
+            <option value="JPY">日本円</option>
+            <option value="NTW">ニュー台湾ドル</option>
+        </select>
+        <h2>↓</h2>
+        <select class="form-control" id="exgout">
+            <option value="null">選んでください</option>
+            <option value="USD">アメリカ合衆国ドル</option>
+            <option value="JPY">日本円</option>
+            <option value="NTW">ニュー台湾ドル</option>
+        </select>
+        <p id="input"><br>手元にある通貨：<input type="number" id="exginput" size="5" value="0"></p>
+        <p id="output">必要な通貨：0</p>
+        <button id="cal" class="btn btn-lg btn-primary">計算</button>
+        <script>
+        var selincrl=document.getElementById('exgin');
+        var seloutcrl=document.getElementById('exgout');
+        document.getElementById('cal').addEventListener('click', function() {
+            var selin=selincrl.value;
+            var selout=seloutcrl.value;
+            var num=document.getElementById('exginput').value;
+            if(selin==='USD'&&selout==='JPY') {
+                num*=110.56;
+                num=num.toFixed(2);
+                document.getElementById('output').innerHTML="必要な通貨："+num+"円";
+            }
+            else if(selin==='USD'&&selout==='NTW') {
+                num*=27.88;
+                num=num.toFixed(2);
+                document.getElementById('output').innerHTML="必要な通貨："+num+"元";
+            }
+            else if(selin==='JPY'&&selout==='USD') {
+                num*=0.009;
+                num=num.toFixed(2);
+                document.getElementById('output').innerHTML="必要な通貨："+num+"ドル";
+            }
+            else if(selin==='JPY'&&selout==='NTW') {
+                num*=0.255;
+                num=num.toFixed(2);
+                document.getElementById('output').innerHTML="必要な通貨："+num+"元";
+            }
+            else if(selin==='NTW'&&selout==='USD') {
+                num*=0.035;
+                num=num.toFixed(2);
+                document.getElementById('output').innerHTML="必要な通貨："+num+"ドル";
+            }
+            else if(selin==='NTW'&&selout==='JPY') {
+                num*=3.91;
+                num=num.toFixed(2);
+                document.getElementById('output').innerHTML="必要な通貨："+num+"円";
+            }
+            else {
+                document.getElementById('output').innerHTML='も一度選んでください';
+            }
+        })
+        </script>
+    </div>
+</body>
+</html>
